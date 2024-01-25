@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0 && mysql -uroot -p$MYSQL_ROOT_PASSWORD nodedb -e "create table people(id int not null auto_increment, name varchar(255), primary key (id))"
+    container_name: db
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - node-network
+networks:
+  node-network:
+    driver: bridge
