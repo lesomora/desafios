@@ -14,6 +14,26 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - node-network
+  app: 
+    build: 
+      context: App
+    container_name: node-app
+    networks: 
+      - node-network
+    volumes: 
+      - ./App:/usr/src/app
+    tty: true
+    depends_on: 
+       - db
+  nginx: 
+    build:
+      context: nginx
+    container_name: nginx-frontend
+    ports:
+      - 8080:80
+    networks:
+      - node-network
+
 networks:
   node-network:
     driver: bridge
