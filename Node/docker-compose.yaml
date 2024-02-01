@@ -41,7 +41,6 @@ services:
       - node-network
     depends_on: 
       - app
-
 networks:
   node-network:
     driver: bridge
