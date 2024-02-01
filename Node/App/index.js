@@ -12,15 +12,15 @@ const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 const sql_insert = `INSERT INTO people(name) values ('Leonardo')`
 connection.query(sql_insert)
-//var queryResults
+var queryResults
 connection.query("SELECT * FROM people", function (err, result, fields) {
+    queryResults = result
     console.log(result);
-    //queryResults = result
 });
 connection.end()
 
 app.get('/', (req, res) => {
-    res.send('<h1> Full Cycle </h1>')
+    res.send('<h1> Full Cycle </h1>' + queryResults[0].name)
 })
 
 
