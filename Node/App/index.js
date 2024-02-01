@@ -12,6 +12,11 @@ const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 const sql_insert = `INSERT INTO people(name) values ('Leonardo')`
 connection.query(sql_insert)
+//var queryResults
+connection.query("SELECT * FROM people", function (err, result, fields) {
+    console.log(result);
+    //queryResults = result
+});
 connection.end()
 
 app.get('/', (req, res) => {
