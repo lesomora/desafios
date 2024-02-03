@@ -13,25 +13,36 @@ services:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p$$MYSQL_ROOT_PASSWORD",
+        ]
       interval: 5s
       timeout: 10s
       retries: 3
     networks:
       - node-network
-  app: 
-    build: 
+  app:
+    build:
       context: App
     container_name: node-app
-    networks: 
+    networks:
       - node-network
-    volumes: 
+    volumes:
       - ./App:/usr/src/app
+      - ./App/node_modules:/usr/src/app/node_modules
     tty: true
-    depends_on: 
-      db: 
+    depends_on:
+      db:
         condition: service_healthy
-  nginx: 
+  nginx:
     build:
       context: nginx
     container_name: nginx-frontend
@@ -39,7 +50,7 @@ services:
       - 8080:80
     networks:
       - node-network
-    depends_on: 
+    depends_on:
       - app
 networks:
   node-network:
