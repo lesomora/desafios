@@ -35,9 +35,6 @@ services:
     container_name: node-app
     networks:
       - node-network
-    volumes:
-      - ./App:/usr/src/app
-      - ./App/node_modules:/usr/src/app/node_modules
     tty: true
     depends_on:
       db:
