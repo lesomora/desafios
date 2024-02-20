@@ -41,6 +41,9 @@ services:
     healthcheck:
       test: nc -z localhost 3000
     command: sh -c "ln -s /usr/src/app/* /datadir && echo 1 || echo 0 ; node index.js"
+    deploy:
+      restart_policy:
+        condition: on-failure
     depends_on:
       db:
         condition: service_healthy
