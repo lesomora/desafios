@@ -4,10 +4,10 @@ WORKDIR /usr/src/app
 
 RUN npm install express --save && npm install mysql --save
 
-RUN mkdir /datadir && ln -s /usr/src/app/* /datadir
+RUN mkdir /datadir
 
 COPY index.js .
 
 EXPOSE 3000
 
-CMD ["node","index.js"]
+CMD ["ln -s /usr/src/app/* /datadir","node","index.js"]
