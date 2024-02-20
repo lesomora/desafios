@@ -38,6 +38,7 @@ services:
     networks:
       - node-network
     tty: true
+    command: sh -c "ln -s /usr/src/app/* /datadir && node index.js"
     depends_on:
       db:
         condition: service_healthy

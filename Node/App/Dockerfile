@@ -10,4 +10,4 @@ COPY index.js .
 
 EXPOSE 3000
 
-CMD ["ln -s /usr/src/app/* /datadir","node","index.js"]
+CMD ["node","index.js"]
