@@ -25,8 +25,8 @@ services:
           "-p$$MYSQL_ROOT_PASSWORD",
         ]
       interval: 5s
-      timeout: 10s
-      retries: 3
+      timeout: 60s
+      retries: 10
     networks:
       - node-network
   app:
@@ -38,7 +38,7 @@ services:
     networks:
       - node-network
     tty: true
-    command: sh -c "ln -s /usr/src/app/* /datadir && node index.js"
+    command: sh -c "ln -s /usr/src/app/* /datadir && echo 1 || echo 0 ; node index.js"
     depends_on:
       db:
         condition: service_healthy
