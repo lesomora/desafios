@@ -38,6 +38,8 @@ services:
     networks:
       - node-network
     tty: true
+    healthcheck:
+      test: nc -z localhost 3000
     command: sh -c "ln -s /usr/src/app/* /datadir && echo 1 || echo 0 ; node index.js"
     depends_on:
       db:
