@@ -6,6 +6,7 @@ services:
     command: --innodb-use-native-aio=0
     container_name: db
     restart: always
+    user: mysql
     volumes:
       - ./mysql:/var/lib/mysql
       - ./dump:/docker-entrypoint-initdb.d
