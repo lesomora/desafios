@@ -1,13 +1,7 @@
 FROM node:15
 
+USER node
+
 WORKDIR /usr/src/app
 
-RUN npm install express --save && npm install mysql --save
-
-RUN mkdir /datadir
-
-COPY index.js .
-
 EXPOSE 3000
-
-CMD ["node","index.js"]

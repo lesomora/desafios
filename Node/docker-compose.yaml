@@ -34,13 +34,11 @@ services:
       context: App
     container_name: node-app
     volumes:
-      - ./app:/datadir
+      - ./App:/usr/src/app
     networks:
       - node-network
     tty: true
-    healthcheck:
-      test: nc -z localhost 3000
-    command: sh -c "ln -s /usr/src/app/* /datadir && echo 1 || echo 0 ; node index.js"
+    command: sh -c "npm install express --save && npm install mysql --save && node index.js"
     deploy:
       restart_policy:
         condition: on-failure
