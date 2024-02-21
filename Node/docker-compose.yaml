@@ -26,7 +26,7 @@ services:
         ]
       interval: 5s
       timeout: 60s
-      retries: 12
+      retries: 13
     networks:
       - node-network
   app:
